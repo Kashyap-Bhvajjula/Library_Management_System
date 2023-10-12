@@ -1,9 +1,6 @@
 package com.example.Library.Management.System.Entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -30,5 +27,10 @@ public class Student {
     private String emailId; // Camel case is converted to snake case automatically (emailID -> email_id)
 
     private String bloodGroup;
+
+    @OneToOne(mappedBy = "student", cascade = CascadeType.ALL)
+    private LibraryCard libraryCard;
+
+    //This should also have libraryCard information
 
 }
