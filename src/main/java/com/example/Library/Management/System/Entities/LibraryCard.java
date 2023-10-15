@@ -16,17 +16,22 @@ import lombok.Setter;
 public class LibraryCard {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer cardNo; //This is acting for the primary key of the Library card table
 
     @Enumerated(value = EnumType.STRING) // Used to define enums in database
     private CardStatus cardStatus;
+
+    private String nameOnCard;
 
     //Library card needs to be connected with student table
     @OneToOne
     @JoinColumn
     private Student student;// This is acting as the fk key of the library vcard table
 
-    //This variable is to be pit in mappedBy attribute in the parent class
+
+
+
 
 
 }
