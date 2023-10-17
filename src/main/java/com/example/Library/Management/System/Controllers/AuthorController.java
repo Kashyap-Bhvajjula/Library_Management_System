@@ -2,7 +2,10 @@ package com.example.Library.Management.System.Controllers;
 
 
 import com.example.Library.Management.System.Entities.Author;
+import com.example.Library.Management.System.Entities.Book;
 import com.example.Library.Management.System.Services.AuthorService;
+import com.example.Library.Management.System.Services.BookService;
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +19,9 @@ public class AuthorController {
 
     @Autowired
     private AuthorService authorService;
+
+    @Autowired
+    private BookService bookService;
 
 
     @PostMapping("/add")
@@ -46,4 +52,23 @@ public class AuthorController {
         }
 
     }
+
+    @GetMapping("/getBookNameList")
+    public ResponseEntity getBookNameList (@RequestParam("authorId")Integer authorId){
+
+        List<String> bookNames = authorService.getBookNames(authorId);
+        return new ResponseEntity(bookNames, HttpStatus.OK);
+    }
+
+
 }
+
+
+
+
+
+
+
+
+
+
