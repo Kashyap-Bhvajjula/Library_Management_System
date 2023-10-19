@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity //This is basically a model class
@@ -32,10 +33,16 @@ public class Book {
 
     private double rating;
 
+    private boolean isAvailable;
+
+    //Author Connection
     @ManyToOne
     @JoinColumn
     private Author author;
 
-    //Author
+    //Transaction connection
+    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
+    private List<Transaction> transactionList = new ArrayList<>();
+
 
 }
